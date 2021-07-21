@@ -1,0 +1,1 @@
+This folder contains the partitions used for five fold cross validation in terms of training, validation and test sets. For training all longitudinal scans of a partituclar patient were used, only a single randomly selected scan was used for validation and testing subjects.
