@@ -187,9 +187,6 @@ def denseOutput(l1_var,shape):
 # Combined model 3D + TDA
 def TDA_3DCNN_combinedModel(inputTDA, input3D,inputTail, choice_modelTDA, choice_model3D,  useTDA_parallelModel = False):
 
-    if useTDA_parallelModel and (not choice_modelTDA == 'Betti_Conv1' or not choice_model3D == 'None'):
-        raise('parallelTDA model currently only supported for Betti_Conv1 option!')
-
     #########################################
     #     Top arms of the combined model    #
     #########################################
@@ -208,17 +205,7 @@ def TDA_3DCNN_combinedModel(inputTDA, input3D,inputTail, choice_modelTDA, choice
             modelTDA2 = PI_CNN_model(inputTDA2)
         else:
             modelTDA = PI_CNN_model(inputTDA)
-    elif choice_modelTDA == 'Betti_Conv1':
-
-        if useTDA_parallelModel:
-            modelTDA1 = conv1D_BettiCurves(inputTDA)
-
-            inputTDA2 = inputTDA.copy()
-            inputTDA2['kernelSize'] = 3
-            modelTDA2 = conv1D_BettiCurves(inputTDA2)
-
-        else:
-            modelTDA = conv1D_BettiCurves(inputTDA)
+            
     elif choice_modelTDA =='None':
         modelTDA = []
     else:
